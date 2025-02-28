@@ -1,7 +1,11 @@
-import { getAvailableNewsYears } from "@/lib/news";
 import Link from "next/link";
 
-export default function ArchivePage() {
+import NewsList from "@/components/news-list";
+import { getAvailableNewsYears, getNewsForYear } from "@/lib/news";
+
+export default async function FilteredNewsPage({ params }) {
+  const { filter } = await params;
+  console.log(filter);
   const links = getAvailableNewsYears();
   return (
     <header id="archive-header">
@@ -16,4 +20,6 @@ export default function ArchivePage() {
       </nav>
     </header>
   );
+  // const news = getNewsForYear(filter);
+  // return <NewsList news={news} />;
 }
